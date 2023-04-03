@@ -5,22 +5,25 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/configuration-reference/#executor-job
+  build:
     docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/configuration-reference/#steps
+      - image: ghcr.io/sushrut1101/docker:arch
     steps:
       - checkout
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: "Build"
+          command: 
+            git config --global user.name "King"
+            git config --global user.email "King@gmail.com" 
+            repo init -u https://github.com/DotOS/manifest.git -b dot12.1 --depth=1
+            repo sync -j8
+            source .build/envsetup.sh
+            lunch dot_whyred-userdebug
+            make bacon -j8
+            cd out/target/product/whyred
+            ls -al
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} out/target/product/whyred/d*.zip
+            
+            
+          
 
-# Orchestrate jobs using workflows
-# See: https://circleci.com/docs/configuration-reference/#workflows
-workflows:
-  say-hello-workflow:
-    jobs:
-      - say-hello
