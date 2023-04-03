@@ -16,11 +16,11 @@ jobs:
           command: 
             git config --global user.name "King" &&
             git config --global user.email "King@gmail.com" && 
-            repo init -u https://github.com/DotOS/manifest.git -b dot12.1 --depth=1 &&
+            repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs --depth=1 &&
             repo sync -j8 &&
             source .build/envsetup.sh &&
-            lunch dot_whyred-userdebug &&
-            make bacon -j8 &&
+            lunch lineageos_whyred-userdebug &&
+            brunch whyred &&
             cd out/target/product/whyred &&
             ls -al &&
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} out/target/product/whyred/d*.zip
