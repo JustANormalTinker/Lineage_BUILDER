@@ -11,13 +11,23 @@ jobs:
     resource_class: large  
     steps:
       - checkout
+      - restore_cache:
+           key: v2_3
       - run:
           name: "Build"
           command: 
             git config --global user.name "King" &&
             git config --global user.email "King@gmail.com" && 
             repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs --depth=1 &&
-            repo sync -j4 &&
+            repo sync -j4
+            git clone https://github.com/Darkstar085/vendor_xiaomi_whyred -b thirteen /root/project/vendor/xiaomi/whyred
+      - save_cache:
+          key: v2_3
+          paths:
+            - "/root/project"
+      - run:
+          name: "ABUILD"
+          command:
             source ./build/envsetup.sh &&
             lunch lineage_whyred-userdebug &&
             make bacon -j4 &&
