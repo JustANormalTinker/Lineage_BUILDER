@@ -21,10 +21,6 @@ jobs:
             repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs --depth=1 &&
             repo sync -j4 &&
             git clone https://github.com/Darkstar085/vendor_xiaomi_whyred -b thirteen /root/project/vendor/xiaomi/whyred
-      - save_cache:
-          key: v2_3
-          paths:
-            - "/root/project"
       - run:
           name: "ABUILD"
           command:
@@ -34,6 +30,10 @@ jobs:
             cd out/target/product/whyred &&
             ls -al &&
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} out/target/product/whyred/d*.zip
+      - save_cache:
+          key: v2_3
+          paths:
+            - "/root/project/out"    
       - store_artifacts:
            path: out/target/
             
