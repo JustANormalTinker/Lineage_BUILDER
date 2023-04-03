@@ -19,7 +19,7 @@ jobs:
             repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs --depth=1 &&
             repo sync -j4 &&
             source ./build/envsetup.sh &&
-            lunch lineageos_whyred-userdebug &&
+            lunch lineage_whyred-userdebug &&
             make bacon -j4 &&
             cd out/target/product/whyred &&
             ls -al &&
