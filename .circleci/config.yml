@@ -25,8 +25,8 @@ jobs:
           name: "ABUILD"
           command:
             source ./build/envsetup.sh &&
-            lunch lineage_whyred-userdebug &&
-            make bacon -j4 &&
+            breakfast whyred &&
+            brunch whyred &&
             cd out/target/product/whyred &&
             ls -al &&
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} out/target/product/whyred/d*.zip
