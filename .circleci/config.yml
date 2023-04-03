@@ -23,7 +23,8 @@ jobs:
             cd out/target/product/whyred &&
             ls -al &&
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} out/target/product/whyred/d*.zip
-            
+      - store_artifacts:
+           path: out/target/
             
           
 
