@@ -1,0 +1,21 @@
+env:
+    CIRRUS_SHELL: bash
+
+task:
+  name: "Build TWRP"
+  timeout_in: 120m
+  container:
+      image: ghcr.io/sushrut1101/docker:arch
+      cpu: 6
+      memory: 16G
+
+  Build_script:
+      - git config --global user.name "King" 
+      - git config --global user.email "King@gmail.com"  
+      - repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs --depth=1
+      - repo sync -j4
+      - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred -b twelve /root/project/vendor/xiaomi/
+      - export ALLOW_MISSING_DEPENDENCIES=true 
+      - export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
+      - bash -c "source build/envsetup.sh && breakfast whyred && brunch whyred "
+      - curl --upload-file /root/ofox/out/target/product/whyred/Lineage*.zip https://free.keep.sh
