@@ -2,13 +2,12 @@ env:
     CIRRUS_SHELL: bash
 
 task:
-  name: "Build TWRP"
+  name: "Build Lineage"
   timeout_in: 120m
   container:
       image: ghcr.io/sushrut1101/docker:arch
       cpu: 8
       memory: 32G
-
   Build_script:
       - git config --global user.name "King" 
       - git config --global user.email "King@gmail.com"  
@@ -19,5 +18,5 @@ task:
       - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred -b thirteen vendor/xiaomi/whyred
       - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred-common.git -b thirteen vendor/xiaomi/sdm660-common
       - bash -c "source build/envsetup.sh && breakfast whyred && brunch whyred"
-  Build_artifacts:
+  Publish_artifacts:
       path: out/target/product/whyred/*.zip
