@@ -17,6 +17,6 @@ task:
       - repo sync -j32
       - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred -b thirteen vendor/xiaomi/whyred
       - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred-common.git -b thirteen vendor/xiaomi/sdm660-common
-      - bash -c "source build/envsetup.sh && breakfast whyred && brunch whyred"
+      - bash -c "source build/envsetup.sh && breakfast whyred && brunch whyred "
   Publish_artifacts:
       path: out/target/product/whyred/*.zip
