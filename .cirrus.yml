@@ -20,4 +20,4 @@ task:
       - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred-common.git -b thirteen vendor/xiaomi/sdm660-common
       - bash -c "source build/envsetup.sh && breakfast whyred && brunch whyred"
  Build_artifacts:
-       path: out/target/product/whyred/*.zip
+      path: out/target/product/whyred/*.zip
