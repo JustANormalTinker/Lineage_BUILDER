@@ -11,12 +11,10 @@ task:
   Build_script:
       - git config --global user.name "King" 
       - git config --global user.email "King@gmail.com"  
-      - mkdir los
-      - cd los
       - repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs --depth=1
       - repo sync -j6
       - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred -b thirteen vendor/xiaomi/whyred
       - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred-common.git -b thirteen vendor/xiaomi/sdm660-common
-      - bash -c "source build/envsetup.sh && breakfast whyred && brunch whyred "
+      - bash -c "source build/envsetup.sh && breakfast whyred && brunch whyred"
   Publish_artifacts:
       path: out/target/product/whyred/*.zip
