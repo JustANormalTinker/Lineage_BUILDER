@@ -20,7 +20,7 @@ jobs:
             git config --global user.email "King@gmail.com" && 
             repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs --depth=1 &&
             repo sync -j4 &&
-            git clone https://github.com/Darkstar085/vendor_xiaomi_whyred -b twelve /root/project/vendor/xiaomi/ &&
+            git clone https://github.com/Darkstar085/vendor_xiaomi_whyred -b twelve /root/project/vendor/xiaomi/
       - run:
           name: "ABUILD"
           command:
