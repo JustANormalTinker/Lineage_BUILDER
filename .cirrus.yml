@@ -15,6 +15,6 @@ task:
       - repo sync -j6
       - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred -b thirteen vendor/xiaomi/whyred
       - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred-common.git -b thirteen vendor/xiaomi/sdm660-common
-      - bash -c "source build/envsetup.sh && breakfast whyred && breakfast whyred && mka bacon -j6"
+      - bash -c "source build/envsetup.sh && breakfast whyred && mka api-stubs-docs -j8 && mka system-api-stubs-docs -j8 && mka test-api-stubs-docs -j8 && mka bacon -j8 | tee build.txt"
   Publish_artifacts:
       path: out/target/product/whyred/*.zip
