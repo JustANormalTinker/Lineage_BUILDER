@@ -16,8 +16,7 @@ task:
       - cd los
       - repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs --depth=1
       - repo sync -j4
-      - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred -b twelve /root/project/vendor/xiaomi/
-      - export ALLOW_MISSING_DEPENDENCIES=true 
-      - export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
-      - bash -c "source build/envsetup.sh && breakfast whyred && brunch whyred "
+      - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred -b thirteen vendor/xiaomi/
+      - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred-common.git -b thirteen vendor/xiaomi/sdm660-common
+      - bash -c "source build/envsetup.sh && breakfast whyred && brunch whyred"
       - curl --upload-file /root/los/out/target/product/whyred/Lineage*.zip https://free.keep.sh
